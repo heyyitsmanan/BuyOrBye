@@ -28,7 +28,7 @@ class ProductResult(BaseModel):
     brand: str
     name: str
     category: str
-    price: int
+    price: float
     rating: float
     review_count: int
     summary: str

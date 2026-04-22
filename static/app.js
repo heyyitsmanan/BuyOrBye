@@ -15,6 +15,7 @@ let sampleSets = {
   phones: [],
   headphones: [],
   laptops: [],
+  "protein-oats": [],
 };
 
 document.querySelector("#loadSamples").addEventListener("click", async () => {
@@ -25,6 +26,7 @@ document.querySelector("#loadSamples").addEventListener("click", async () => {
 });
 
 document.querySelector("#compareNow").addEventListener("click", compareProducts);
+document.querySelector("#resetComparison").addEventListener("click", resetComparison);
 
 document.querySelectorAll(".pill").forEach((button) => {
   button.addEventListener("click", async () => {
@@ -157,6 +159,16 @@ function renderEmptyState(message) {
       <p class="metric-note">${message}</p>
     </article>
   `;
+}
+
+function resetComparison() {
+  linksInput.value = "";
+  priorityMode.value = "balanced";
+  categoryMode.value = "auto";
+  statusMessage.textContent = "Comparison reset. Add product links or try a sample set.";
+  renderEmptyState(
+    "Paste product links or use a sample set to see price comparison, pros and cons, and recommendation logic."
+  );
 }
 
 renderEmptyState(

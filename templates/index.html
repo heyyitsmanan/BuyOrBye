@@ -18,7 +18,7 @@
         <div class="hero-copy">
           <div class="brand-lockup">
             <img
-              src="{{ url_for('static', path='/logos/black/buyorbye-logo-lockup-tagline-black.png') }}"
+              src="{{ url_for('static', path='/logos/buyorbye-logo-nobg.png') }}"
               alt="BuyOrBye logo"
               class="brand-logo"
             />
@@ -32,6 +32,7 @@
           <div class="hero-actions">
             <button id="compareNow" class="button button-primary">Start comparing</button>
             <button id="loadSamples" class="button button-secondary">Try sample comparison</button>
+            <button id="resetComparison" class="button button-secondary">Reset</button>
           </div>
         </div>
         <aside class="hero-panel">
@@ -80,6 +81,7 @@
                 <option value="phones">Phones</option>
                 <option value="headphones">Headphones</option>
                 <option value="laptops">Laptops</option>
+                <option value="protein-oats">Protein oats</option>
               </select>
             </label>
           </div>
@@ -90,6 +92,7 @@
               <button class="pill" data-sample="phones">Phones</button>
               <button class="pill" data-sample="headphones">Headphones</button>
               <button class="pill" data-sample="laptops">Laptops</button>
+              <button class="pill" data-sample="protein-oats">Protein oats</button>
             </div>
           </div>
 
