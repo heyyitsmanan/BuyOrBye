@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BuyOrBye | Compare Smarter Before You Buy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <div class="brand-lockup">
+            <img
+              src="{{ url_for('static', path='/logos/black/buyorbye-logo-lockup-tagline-black.png') }}"
+              alt="BuyOrBye logo"
+              class="brand-logo"
+            />
+          </div>
+          <p class="eyebrow">Smart shopping decision app</p>
+          <h1>Buy smart. Skip regret.</h1>
+          <p class="hero-text">
+            Paste product links and get instant pros, cons, price comparisons, and a
+            clear recommendation.
+          </p>
+          <div class="hero-actions">
+            <button id="compareNow" class="button button-primary">Start comparing</button>
+            <button id="loadSamples" class="button button-secondary">Try sample comparison</button>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <p class="panel-label">Why BuyOrBye works</p>
+          <ul class="mini-list">
+            <li>Brings scattered product pages into one decision view</li>
+            <li>Highlights tradeoffs through pros, cons, and scoring</li>
+            <li>Helps shoppers judge value, not just the cheapest price</li>
+          </ul>
+        </aside>
+      </header>
+
+      <main class="layout">
+        <section class="control-panel card">
+          <div class="section-header">
+            <div>
+              <p class="section-kicker">Input</p>
+              <h2>Paste product links</h2>
+            </div>
+            <span class="section-chip">2-6 links recommended</span>
+          </div>
+
+          <label class="input-label" for="productLinks">
+            One product URL or keyword per line
+          </label>
+          <textarea
+            id="productLinks"
+            rows="10"
+            placeholder="https://example.com/apple-iphone-15&#10;https://example.com/samsung-galaxy-s24&#10;sony-wh-1000xm5"
+          ></textarea>
+
+          <div class="options-grid">
+            <label class="field">
+              <span>Shopping priority</span>
+              <select id="priorityMode">
+                <option value="balanced">Balanced value</option>
+                <option value="budget">Lowest price first</option>
+                <option value="quality">Highest quality first</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Product category</span>
+              <select id="categoryMode">
+                <option value="auto">Auto-detect</option>
+                <option value="phones">Phones</option>
+                <option value="headphones">Headphones</option>
+                <option value="laptops">Laptops</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="samples">
+            <p class="samples-label">Quick samples</p>
+            <div class="sample-pills">
+              <button class="pill" data-sample="phones">Phones</button>
+              <button class="pill" data-sample="headphones">Headphones</button>
+              <button class="pill" data-sample="laptops">Laptops</button>
+            </div>
+          </div>
+
+          <div id="statusMessage" class="status-message"></div>
+        </section>
+
+        <section class="results-panel">
+          <div class="metrics-grid" id="metricsGrid"></div>
+          <div class="recommendations-grid" id="recommendationsGrid"></div>
+          <div class="comparison-grid" id="comparisonGrid"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="metricTemplate">
+      <article class="metric-card card">
+        <p class="metric-label"></p>
+        <h3 class="metric-value"></h3>
+        <p class="metric-note"></p>
+      </article>
+    </template>
+
+    <template id="recommendationTemplate">
+      <article class="recommendation-card card">
+        <div class="recommendation-topline">
+          <p class="recommendation-label"></p>
+          <span class="recommendation-score"></span>
+        </div>
+        <h3 class="recommendation-title"></h3>
+        <p class="recommendation-subtitle"></p>
+        <div class="recommendation-reason"></div>
+      </article>
+    </template>
+
+    <template id="productTemplate">
+      <article class="product-card card">
+        <div class="product-head">
+          <div>
+            <p class="product-brand"></p>
+            <h3 class="product-name"></h3>
+          </div>
+          <div class="price-badge"></div>
+        </div>
+
+        <div class="score-row">
+          <div class="score-pill">
+            <span>Price</span>
+            <strong class="price-score"></strong>
+          </div>
+          <div class="score-pill">
+            <span>Quality</span>
+            <strong class="quality-score"></strong>
+          </div>
+          <div class="score-pill">
+            <span>Value</span>
+            <strong class="value-score"></strong>
+          </div>
+        </div>
+
+        <p class="product-summary"></p>
+
+        <div class="pros-cons">
+          <div>
+            <p class="list-title">Pros</p>
+            <ul class="pro-list"></ul>
+          </div>
+          <div>
+            <p class="list-title">Cons</p>
+            <ul class="con-list"></ul>
+          </div>
+        </div>
+
+        <div class="specs-block">
+          <p class="list-title">Key signals</p>
+          <div class="spec-list"></div>
+        </div>
+      </article>
+    </template>
+
+    <script src="{{ url_for('static', path='/app.js') }}"></script>
+  </body>
+</html>
